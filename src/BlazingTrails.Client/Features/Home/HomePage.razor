@@ -4,25 +4,29 @@
 
 <PageTitle>Blazing Trails</PageTitle>
 
-@if (_trails == null)
+@if (_trails is null)
 {
     <p>Loading trails...</p>
 }
 else
 {
+    <TrailDetails Trail="_selectedTrail" />
     <div class="grid">
     @foreach (var trail in _trails)
         {
-            <TrailCard Trail="@trail" />
+            <TrailCard Trail="@trail" OnSelected="OnTrailSelected" />
         }
     </div>
 }
 
 @code {
     private IEnumerable<Trail>? _trails;
+    private Trail? _selectedTrail;
 
     protected override async Task OnInitializedAsync()
     {
         _trails = await Http.GetFromJsonAsync<IEnumerable<Trail>>("trails/trail-data.json");
     }
+
+    private void OnTrailSelected(Trail trail) => _selectedTrail = trail;
 }
