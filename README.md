@@ -8,3 +8,9 @@ Blazing Trails app built while studying [Blazor in Action](https://www.manning.c
 dotnet ef migrations add Initial --project src/BlazingTrails.Api/ --output-dir Persistence/Data/Migrations
 dotnet ef database update --project src/BlazingTrails.Api/
 ```
+
+## Run
+
+```bash
+dotnet watch --project src/BlazingTrails.Api/
+```
