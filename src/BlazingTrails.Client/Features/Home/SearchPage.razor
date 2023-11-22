@@ -53,12 +53,12 @@ else
     {
         var filters = new List<Func<Trail, bool>>();
 
-        if (MaxLength is not null && MaxLength > 0)
+        if (MaxLength.HasValue && MaxLength > 0)
         {
             filters.Add(x => x.Length <= MaxLength);
         }
 
-        if (MaxTime is not null && MaxTime > 0)
+        if (MaxTime.HasValue && MaxTime > 0)
         {
             filters.Add(x => x.TimeInMinutes <= MaxTime * 60);
         }

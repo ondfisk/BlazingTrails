@@ -2,37 +2,24 @@
 
 <div class="filters">
     <label for="maxLength">Max Length</label>
-    <input id="maxLength" type="number" class="form-control" @bind="_maxLength" />
+    <input id="maxLength" type="number" min="0" class="form-control" @bind="MaxLength" />
     <label for="maxTime">Max Time (hours)</label>
-    <input id="maxTime" type="number" class="form-control" @bind="_maxTime" />
-    <button class="btn btn-outline-primary" @onclick="FilterSearchResults">
-        Filter
-    </button>
-    <button class="btn btn-outline-secondary" @onclick="ClearSearchFilter">
-        Clear
-    </button>
+    <input id="maxTime" type="number" min="0" class="form-control" @bind="MaxTime" />
+    <button class="btn btn-outline-primary" @onclick="FilterSearchResults">Filter</button>
+    <button class="btn btn-outline-secondary" @onclick="ClearSearchFilter">Clear</button>
 </div>
 
 @code {
-    private int _maxLength;
-    private int _maxTime;
-
     [Parameter, EditorRequired] public string SearchTerm { get; set; } = default!;
-    [Parameter] public int? MaxLength { get; set; }
-    [Parameter] public int? MaxTime { get; set; }
-
-    protected override void OnInitialized()
-    {
-        _maxLength = MaxLength ?? 0;
-        _maxTime = MaxTime ?? 0;
-    }
+    [Parameter, SupplyParameterFromQuery] public int? MaxLength { get; set; }
+    [Parameter, SupplyParameterFromQuery] public int? MaxTime { get; set; }
 
     private void FilterSearchResults()
     {
         var uriWithQuerystring = NavManager.GetUriWithQueryParameters(new Dictionary<string, object?>()
             {
-                [nameof(SearchPage.MaxLength)] = _maxLength == 0 ? null : _maxLength,
-                [nameof(SearchPage.MaxTime)] = _maxTime == 0 ? null : _maxTime
+                [nameof(SearchPage.MaxLength)] = MaxLength == 0 ? null : MaxLength,
+                [nameof(SearchPage.MaxTime)] = MaxTime == 0 ? null : MaxTime
             });
 
         NavManager.NavigateTo(uriWithQuerystring);
@@ -40,8 +27,8 @@
 
     private void ClearSearchFilter()
     {
-        _maxLength = 0;
-        _maxTime = 0;
+        MaxLength = 0;
+        MaxTime = 0;
 
         NavManager.NavigateTo($"/search/{SearchTerm}");
     }
