@@ -1,6 +1,5 @@
 ﻿@page "/"
 @inject HttpClient Http
-@using System.Net.Http.Json;
 
 <PageTitle>Blazing Trails</PageTitle>
 
@@ -11,10 +10,13 @@
 else
 {
     <TrailDetails Trail="_selectedTrail" />
+
+    <TrailSearch />
+
     <div class="grid">
     @foreach (var trail in _trails)
         {
-            <TrailCard Trail="@trail" OnSelected="OnTrailSelected" />
+            <TrailCard Trail="trail" OnSelected="OnTrailSelected" />
         }
     </div>
 }
