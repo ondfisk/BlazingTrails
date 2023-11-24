@@ -1,8 +1,3 @@
-using BlazingTrails.Api.Persistence;
-using FluentValidation;
-using FluentValidation.AspNetCore;
-using Microsoft.EntityFrameworkCore;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -11,6 +6,7 @@ builder.Services.AddDbContext<BlazingTrailsContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString(nameof(BlazingTrailsContext)));
 });
 builder.Services.AddValidatorsFromAssemblyContaining<Program>();
+builder.Services.AddValidatorsFromAssemblyContaining<Root>();
 
 var app = builder.Build();
 
@@ -27,18 +23,6 @@ app.UseStaticFiles();
 
 app.MapFallbackToFile("index.html");
 
-// app.MapGet("/weatherforecast", () =>
-// {
-//     var forecast =  Enumerable.Range(1, 5).Select(index =>
-//         new WeatherForecast
-//         (
-//             DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-//             Random.Shared.Next(-20, 55),
-//             summaries[Random.Shared.Next(summaries.Length)]
-//         ))
-//         .ToArray();
-//     return forecast;
-// })
-// .WithName("GetWeatherForecast");
+app.MapPost("/api/trails", CreateTrailsEndpoint.Invoke);
 
 app.Run();
