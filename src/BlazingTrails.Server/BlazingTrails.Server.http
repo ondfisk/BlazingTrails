@@ -1,0 +1,6 @@
+@BlazingTrails_HostAddress = http://localhost:5001
+
+GET {{BlazingTrails_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,4 +1,4 @@
-namespace BlazingTrails.Api.Persistence.Entities;
+namespace BlazingTrails.Server.Persistence.Entities;
 
 public class RouteInstruction
 {

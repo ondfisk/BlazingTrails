@@ -1,6 +1,6 @@
 namespace BlazingTrails.Shared;
 
-public class Root
+public class Shared
 {
-    private Root() { }
+    private Shared() { }
 }

@@ -1,4 +1,4 @@
-namespace BlazingTrails.Api.Persistence;
+namespace BlazingTrails.Server.Persistence;
 
 public class BlazingTrailsContext : DbContext
 {

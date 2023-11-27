@@ -6,7 +6,7 @@ builder.Services.AddDbContext<BlazingTrailsContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString(nameof(BlazingTrailsContext)));
 });
 builder.Services.AddValidatorsFromAssemblyContaining<Program>();
-builder.Services.AddValidatorsFromAssemblyContaining<Root>();
+builder.Services.AddValidatorsFromAssemblyContaining<Shared>();
 
 var app = builder.Build();
 
@@ -19,7 +19,12 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseBlazorFrameworkFiles();
-app.UseStaticFiles();
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Images")),
+    RequestPath = new PathString("/Images")
+});
 
 app.MapFallbackToFile("index.html");
 

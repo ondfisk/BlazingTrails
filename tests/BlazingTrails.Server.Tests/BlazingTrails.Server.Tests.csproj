@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\BlazingTrails.Api\BlazingTrails.Api.csproj" />
+    <ProjectReference Include="..\..\src\BlazingTrails.Server\BlazingTrails.Server.csproj" />
   </ItemGroup>
 
 </Project>

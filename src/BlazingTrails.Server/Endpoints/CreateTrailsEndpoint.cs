@@ -1,4 +1,4 @@
-namespace BlazingTrails.Api.Endpoints;
+namespace BlazingTrails.Server.Endpoints;
 
 public static class CreateTrailsEndpoint
 {
@@ -16,6 +16,7 @@ public static class CreateTrailsEndpoint
 
         var entity = new Trail
         {
+            Id = trail.Id,
             Name = trail.Name,
             Description = trail.Description,
             Location = trail.Location,

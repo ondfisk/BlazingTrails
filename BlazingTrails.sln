@@ -7,11 +7,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D9527878-C22
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazingTrails.Client", "src\BlazingTrails.Client\BlazingTrails.Client.csproj", "{DD63B6AA-6BF1-4CC6-BDD7-5D08DFBB859B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazingTrails.Api", "src\BlazingTrails.Api\BlazingTrails.Api.csproj", "{F708082D-5B43-477A-BD5F-94A7624CA976}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazingTrails.Server", "src\BlazingTrails.Server\BlazingTrails.Server.csproj", "{F708082D-5B43-477A-BD5F-94A7624CA976}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0198EE46-C0EA-45F1-A70C-A8BF12E9872A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazingTrails.Api.Tests", "tests\BlazingTrails.Api.Tests\BlazingTrails.Api.Tests.csproj", "{A73132A1-5CB7-41E9-AC50-F67087EF3EEF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazingTrails.Server.Tests", "tests\BlazingTrails.Server.Tests\BlazingTrails.Server.Tests.csproj", "{A73132A1-5CB7-41E9-AC50-F67087EF3EEF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazingTrails.Shared", "src\BlazingTrails.Shared\BlazingTrails.Shared.csproj", "{13B1F144-CE44-4B36-96C4-9CCDF047A8D6}"
 EndProject

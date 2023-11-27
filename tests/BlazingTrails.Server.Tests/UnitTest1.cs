@@ -1,4 +1,4 @@
-namespace BlazingTrails.Api.Tests;
+namespace BlazingTrails.Tests;
 
 public class UnitTest1
 {
