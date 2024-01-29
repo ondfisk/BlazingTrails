@@ -6,7 +6,7 @@ namespace BlazingTrails.Server.Endpoints;
 
 public static class UploadTrailImageEndpoint
 {
-    public static async Task<Results<Created, NotFound<string>, ValidationProblem>> Invoke(BlazingTrailsContext context, Guid trailId, [FromForm] IFormFile file, FileValidator validator, CancellationToken cancellationToken)
+    public static async Task<Results<Created<string>, NotFound<string>, ValidationProblem>> Invoke(BlazingTrailsContext context, Guid trailId, [FromForm] IFormFile file, FileValidator validator, CancellationToken cancellationToken)
     {
         var trail = await context.Trails.FindAsync([trailId], cancellationToken);
 
@@ -39,7 +39,7 @@ public static class UploadTrailImageEndpoint
         trail.Image = fileName;
         await context.SaveChangesAsync(cancellationToken);
 
-        return TypedResults.Created($"/images/{fileName}");
+        return TypedResults.Created($"/images/{fileName}", fileName);
     }
 }
 

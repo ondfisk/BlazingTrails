@@ -46,7 +46,7 @@ app.MapGet("/api/v1/antiforgery/token", (IAntiforgery antiforgery, HttpContext c
 });
 //.RequireAuthorization(); // In a real world scenario, you'll only give this token to authorized users
 
-app.MapPost("/api/v1/trails", CreateTrailsEndpoint.Invoke);
+app.MapPost("/api/v1/trails", CreateTrailEndpoint.Invoke);
 app.MapPost("/api/v1/trails/{trailId}/images", UploadTrailImageEndpoint.Invoke);
 
 app.Run();

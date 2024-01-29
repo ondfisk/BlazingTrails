@@ -1,8 +1,8 @@
 namespace BlazingTrails.Server.Endpoints;
 
-public static class CreateTrailsEndpoint
+public static class CreateTrailEndpoint
 {
-    public static async Task<Results<Created, ValidationProblem>> Invoke(BlazingTrailsContext context, TrailDTO trail, TrailValidator validator, CancellationToken cancellationToken)
+    public static async Task<Results<Created<Guid>, ValidationProblem>> Invoke(BlazingTrailsContext context, TrailDTO trail, TrailValidator validator, CancellationToken cancellationToken)
     {
         var validationResult = await validator.ValidateAsync(trail, cancellationToken);
 
@@ -29,6 +29,6 @@ public static class CreateTrailsEndpoint
 
         await context.SaveChangesAsync(cancellationToken);
 
-        return TypedResults.Created($"/api/v1/trails/{entity.Id}");
+        return TypedResults.Created($"/api/v1/trails/{entity.Id}", entity.Id);
     }
 }

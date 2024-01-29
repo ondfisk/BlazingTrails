@@ -1,5 +1,5 @@
 @page "/add-trail"
-@inject HttpClient Http
+@inject IMediator Mediator
 
 <PageTitle>Add Trail - Blazing Trails</PageTitle>
 
@@ -163,9 +163,9 @@ else if (_errorMessage is not null)
 
     public async Task SubmitForm()
     {
-        var response = await Http.PostAsJsonAsync("/api/v1/trails", _trail);
+        var response = await Mediator.Send(new AddTrailRequest(_trail));
 
-        if (!response.IsSuccessStatusCode)
+        if (!response.Success)
         {
             _submitSuccessful = false;
             _errorMessage = "There was a problem saving your trail.";
@@ -177,22 +177,16 @@ else if (_errorMessage is not null)
         }
         else
         {
+
             await ProcessImage(_trail.Id, _trailImage);
         }
     }
 
     private async Task ProcessImage(Guid trailId, IBrowserFile trailImage)
     {
-        using var requestContent = new MultipartFormDataContent();
-        requestContent.Headers.Add("X-XSRF-TOKEN", await Http.GetStringAsync("/api/v1/antiforgery/token"));
-        var stream = trailImage.OpenReadStream(trailImage.Size);
-        var streamContent = new StreamContent(stream);
-        streamContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue(trailImage.ContentType);
-        requestContent.Add(streamContent, "file", trailImage.Name);
+        var response = await Mediator.Send(new UploadTrailImageRequest(trailId, trailImage));
 
-        var response = await Http.PostAsync($"/api/v1/trails/{trailId}/images", requestContent);
-
-        if (!response.IsSuccessStatusCode)
+        if (!response.Success)
         {
             _submitSuccessful = false;
             _errorMessage = "Your trail was saved, but there was a problem uploading the image.";
