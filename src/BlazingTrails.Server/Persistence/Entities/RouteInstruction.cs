@@ -2,8 +2,8 @@ namespace BlazingTrails.Server.Persistence.Entities;
 
 public class RouteInstruction
 {
-    public int Id { get; set; }
-    public int TrailId { get; set; }
+    public Guid Id { get; set; }
+    public Guid TrailId { get; set; }
     public int Stage { get; set; }
     public required string Description { get; set; }
     public Trail Trail { get; set; } = default!;

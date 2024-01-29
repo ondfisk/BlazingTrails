@@ -5,12 +5,12 @@ Blazing Trails app built while studying [Blazor in Action](https://www.manning.c
 ## Initialize SQLite
 
 ```bash
-dotnet ef migrations add Initial --project src/BlazingTrails/ --output-dir Persistence/Data/Migrations
-dotnet ef database update --project src/BlazingTrails/
+dotnet ef migrations add Initial --project src/BlazingTrails.Server/ --output-dir Persistence/Data/Migrations
+dotnet ef database update --project src/BlazingTrails.Server/
 ```
 
 ## Run
 
 ```bash
-dotnet watch --project src/BlazingTrails/
+dotnet watch --project src/BlazingTrails.Server/ --launch-profile https
 ```

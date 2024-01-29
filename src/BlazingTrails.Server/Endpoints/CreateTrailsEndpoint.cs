@@ -22,7 +22,7 @@ public static class CreateTrailsEndpoint
             Location = trail.Location,
             TimeInMinutes = trail.TimeInMinutes,
             Length = trail.Length,
-            Route = trail.Route.Select(x => new RouteInstruction { Stage = x.Stage, Description = x.Description, }).ToList(),
+            Route = trail.Route.Select(x => new RouteInstruction { Id = Guid.NewGuid(), Stage = x.Stage, Description = x.Description, }).ToList(),
         };
 
         context.Trails.Add(entity);
